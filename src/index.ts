@@ -6,6 +6,7 @@ import { insertStyles, getRegisteredStyles } from "@emotion/utils";
 import type { EmotionCache } from "@emotion/cache";
 import { useEmotionCache } from "./@emotion/react";
 import { getCache } from "./cache";
+import { createWithStyles } from "./withStyles";
 
 function createUseCssAndCx(params: { useEmotionCache(): EmotionCache }) {
     const { useEmotionCache } = params;
@@ -37,13 +38,18 @@ export function createMakeStyles<Theme>(params: {
         useCssAndCx,
     });
 
+    const { withStyles } = createWithStyles({
+        useTheme,
+        useCssAndCx,
+    });
+
     function useStyles() {
         const theme = useTheme();
         const { css, cx } = useCssAndCx();
         return { theme, css, cx };
     }
 
-    return { makeStyles, useStyles };
+    return { makeStyles, useStyles, withStyles };
 }
 
 /** Reexport from @emotion/react */

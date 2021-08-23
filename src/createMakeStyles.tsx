@@ -15,7 +15,7 @@ export function createMakeStyles<Theme>(params: {
     /** returns useStyle. */
     function makeStyles<Params = void>() {
         return function <Key extends string>(
-            getCssObjectOrCssObject:
+            cssObjectOrGetCssObject:
                 | ((
                       theme: Theme,
                       params: Params,
@@ -24,9 +24,9 @@ export function createMakeStyles<Theme>(params: {
                 | Record<Key, CSSObject>,
         ) {
             const getCssObject =
-                typeof getCssObjectOrCssObject === "function"
-                    ? getCssObjectOrCssObject
-                    : () => getCssObjectOrCssObject;
+                typeof cssObjectOrGetCssObject === "function"
+                    ? cssObjectOrGetCssObject
+                    : () => cssObjectOrGetCssObject;
 
             function useStyles(params: Params) {
                 const theme = useTheme();
