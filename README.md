@@ -250,6 +250,7 @@ export const {
     makeStyles,
     useStyles, //<- This useStyles is like the useStyles you get when you
     //   call makeStyles but it doesn't return a classes object.
+    withStyle, //<- As discussed in this issue: https://github.com/garronej/tss-react/issues/16
 } = createMakeStyles({ useTheme });
 ```
 
